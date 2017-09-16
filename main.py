@@ -5,7 +5,6 @@ import cv2
 import numpy as np
 np.set_printoptions(precision=2)
 
-import argparse
 import itertools
 import os
 import time
@@ -38,15 +37,6 @@ align = openface.AlignDlib(args.dlibFacePredictor)
 net = openface.TorchNeuralNet(args.networkModel, args.imgDim)
 lsh = LSHash(32, 128)
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Hello, world")
-
-def make_app():
-    return tornado.web.Application([
-        (r"/", MainHandler),
-    ])
-
 def get_rep(imgPath):
     bgrImg = cv2.imread(imgPath)
 
@@ -75,8 +65,16 @@ def load_tests():
     for img in args.imgs:
         lsh.index(get_rep(img), img)
 
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("index.html")
+
+def make_app():
+    return tornado.web.Application([
+        (r"/", MainHandler),
+    ])
+
 if __name__ == "__main__":
-    '''
     app = make_app()
     app.listen(8000)
     tornado.ioloop.IOLoop.current().start()
@@ -84,3 +82,4 @@ if __name__ == "__main__":
     load_tests()
     l = [get_rep(x) for x in args.imgs]
     import pdb; pdb.set_trace();
+    '''
