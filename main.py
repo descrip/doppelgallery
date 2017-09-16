@@ -11,8 +11,6 @@ import time
 
 import openface
 
-from lshash import LSHash
-
 start = time.time()
 
 fileDir = os.path.dirname(os.path.realpath(__file__))
@@ -35,7 +33,6 @@ args = parser.parse_args()
 
 align = openface.AlignDlib(args.dlibFacePredictor)
 net = openface.TorchNeuralNet(args.networkModel, args.imgDim)
-lsh = LSHash(32, 128)
 
 def get_rep(imgPath):
     bgrImg = cv2.imread(imgPath)
@@ -60,10 +57,6 @@ def get_rep(imgPath):
     print rep
 
     return rep
-
-def load_tests():
-    for img in args.imgs:
-        lsh.index(get_rep(img), img)
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
