@@ -4,7 +4,21 @@ import cv2
 import numpy as np
 np.set_printoptions(precision=2)
 
+import argparse
+import itertools
+import os
+import time
+
 import openface
+
+start = time.time()
+
+fileDir = os.path.dirname(os.path.realpath(__file__))
+modelDir = os.path.join(fileDir, '..', 'models')
+dlibModelDir = os.path.join(modelDir, 'dlib')
+openfaceModelDir = os.path.join(modelDir, 'openface')
+
+
 
 '''
 def get_rep(img_path):
@@ -24,7 +38,31 @@ def make_app():
         (r"/", MainHandler),
     ])
 
+def get_rep(imgPath):
+    bgrImg = cv2.imread(imgPath)
+
+    if bgrImg is None:
+        raise Exception("Unable to load image: {}".format(imgPath))
+    rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)
+
+    start = time.time()
+    bb = align.getLargestFaceBoundingBox(rgbImg)
+    if bb is None:
+        raise Exception("Unable to find a face: {}".format(imgPath))
+
+    start = time.time()
+    alignedFace = align.align(args.imgDim, rgbImg, bb,
+                              landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
+    if alignedFace is None:
+        raise Exception("Unable to align image: {}".format(imgPath))
+
+    start = time.time()
+    rep = net.forward(alignedFace)
+
+    return rep
+
 if __name__ == "__main__":
     app = make_app()
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
+
