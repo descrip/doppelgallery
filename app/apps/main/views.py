@@ -5,6 +5,7 @@ import os
 from random import randint
 from image_db import ImageDB
 from get_rep import getRep
+import psycopg2
 
 def get_new_user_id():
     while True:
@@ -51,13 +52,21 @@ class WebcamHandler(tornado.web.RequestHandler):
 
 class GalleryHandler(tornado.web.RequestHandler):
     def get(self, user_id):
+        conn = psycopg2.connect(database='dop', user='ubuntu', host='localhost', port='26257')
+	cur = conn.cursor()
+
         img_file = get_img_by_user_id(user_id)
         try:
             x = get_top_3('/root/doppelganger/app/static/img/users/' + img_file)
-            paintings = []
+
+            p = []
             for i in range(3):
-                paintings.append((x[0][i], x[1][i]))
-            paintings.sort()
+                p.append((x[0][i], x[1][i]))
+            p.sort()
+
+            paintings = []
+            import pdb; pdb.set_trace();
+
             with Image.open('./static/img/users/%s' % img_file) as user_img:
                 self.render(
                     'gallery.html',
