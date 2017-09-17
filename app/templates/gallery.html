@@ -47,7 +47,7 @@
 			-->
 		{% for i in range(len(paintings)) %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" style="{{ 'padding-bottom: 300px;' if i == len(paintings)-1 else '' }}">
-			  <a href="{{ static_url('img/images/%s.jpg' % paintings[i]['id']) }}" itemprop="contentUrl" data-size="964x1024">
+            <a href="{{ static_url('img/images/%s.jpg' % paintings[i]['id']) }}" itemprop="contentUrl" data-size="{{ "%dx%d" % (paintings[i]['width'], paintings[i]['height']) }}">
             <img src="{{ static_url('img/images/%s.jpg' % paintings[i]['id']) }}" itemprop="thumbnail" alt="Image description" />
         </a>
             {% if 'title' in paintings[i] and 'artist' in paintings[i] %}

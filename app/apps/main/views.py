@@ -73,19 +73,25 @@ class GalleryHandler(tornado.web.RequestHandler):
             for pp in p:
                 for r in er:
                     if r[0] == pp[1] + ".jpg":
-                        d = {
-                            'id' : pp[1],
-                            'dist' : pp[0],
-                            'artist' : r[1],
-                            'title' : r[2],
-                        }
-                        paintings.append(d)
+                        with Image.open('./static/img/images/%s.jpg' % pp[1]) as img:
+                            d = {
+                                'id' : pp[1],
+                                'dist' : pp[0],
+                                'artist' : r[1],
+                                'title' : r[2],
+                                'width' : img.width,
+                                'height' : img.height
+                            }
+                            paintings.append(d)
                         break
                 else:
-                    paintings.append({
-                        'id' : pp[1],
-                        'dist' : pp[0]
-                    })
+                    with Image.open('./static/img/images/%s.jpg' % pp[1]) as img:
+                        paintings.append({
+                            'id' : pp[1],
+                            'dist' : pp[0],
+                            'width' : img.width,
+                            'height' : img.height
+                        })
 
             with Image.open('./static/img/users/%s' % img_file) as user_img:
                 self.render(
