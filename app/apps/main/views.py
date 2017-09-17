@@ -28,8 +28,6 @@ def get_top_3(fname):
 
     mat = getRep(fname)
     dists, names = idb.k_nearest(mat, 3)
-    print(dists)
-    print(names)
     return dists, names
 
 def handle_post(self, img_bytes):
@@ -56,7 +54,7 @@ class GalleryHandler(tornado.web.RequestHandler):
         paintings = []
         for i in range(3):
             paintings.append((x[0][i], x[1][i]))
-        import pdb; pdb.set_trace();
+        paintings.sort()
         with Image.open('./static/img/users/%s' % img_file) as user_img:
             self.render(
                 'gallery.html',
