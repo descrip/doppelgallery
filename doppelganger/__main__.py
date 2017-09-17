@@ -31,3 +31,4 @@ def convert_dir():
 
 if __name__ == "__main__":
     # dir_to_rep(sys.argv[1])
+    # load_dir('/root/data/out')
