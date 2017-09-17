@@ -28,7 +28,7 @@ def get_top_3(fname):
 
     mat = getRep(fname)
     if mat is None:
-        throw Exception("couldn't find face")
+        raise Exception("couldn't find face")
     dists, names = idb.k_nearest(mat, 3)
     return dists, names
 
@@ -38,8 +38,8 @@ def handle_post(self, img_bytes):
     return '/gallery/%d' % user_id
 
 class HomeHandler(tornado.web.RequestHandler):
-    def get(self, face_error=False):
-        self.render('home.html', face_error=face_error)
+    def get(self):
+        self.render('home.html')
 
 class UploadHandler(tornado.web.RequestHandler):
     def post(self):
@@ -68,7 +68,4 @@ class GalleryHandler(tornado.web.RequestHandler):
                     paintings = paintings
                 )
         except:
-            self.redirect(
-                '/',
-                face_error=True
-            )
+            self.redirect('/?face_error=1')
