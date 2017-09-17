@@ -18,3 +18,5 @@ function take_snapshot() {
 document.getElementById("upload-input").onchange = function() {
     document.getElementById("upload-form").submit();
 };
+
+document.getElementById("camera-button").onclick = take_snapshot;

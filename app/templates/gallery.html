@@ -13,8 +13,8 @@
   <div class="row" id="row">
     <div class="col-lg-4 col-abs col-left">
       <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="https://farm3.staticflickr.com/2567/5697107145_a4c2eaa0cd_o.jpg" itemprop="contentUrl" data-size="1024x1024">
-            <img src="https://farm3.staticflickr.com/2567/5697107145_3c27ff3cd1_b.jpg" itemprop="thumbnail" alt="Image description" />
+        <a href="{{ static_url('img/users/%s' % user_img_file) }}" itemprop="contentUrl" data-size="1024x1024">
+            <img src="{{ static_url('img/users/%s' % user_img_file) }}" itemprop="thumbnail" alt="Image description" />
         </a>
         <figcaption itemprop="caption description"></figcaption>
       </figure>
