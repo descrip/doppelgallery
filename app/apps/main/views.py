@@ -3,7 +3,7 @@ import StringIO
 from PIL import Image
 import os
 from random import randint
-from image_db import ImageDB
+import image_db as idb
 
 def get_new_user_id():
     while True:
@@ -21,8 +21,15 @@ def get_img_by_user_id(user_id):
             if str(user_id) in os.path.splitext(name)[0]:
                 return name
 
-def find_top_3(img_file):
+def get_top_3(fname):
     idb = ImageDB()
+    idb.load_from_file("test_save")
+
+    mat = getRep(fname)
+    dists, names = idb.k_nearest(mat, 3)
+    print(dists)
+    print(names)
+    return dists, names
 
 def handle_post(self, img_bytes):
     user_id = get_new_user_id()
