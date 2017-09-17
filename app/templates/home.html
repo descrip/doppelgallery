@@ -2,21 +2,27 @@
 
 {% block content %}
 
-<div class="row h-100">
-  <div class="col-lg-7 my-auto">
+<div class="row">
+  <div class="col-lg-7 col-centered">
     <div class="jumbotron" id="calling-card">
-      <h1>DoppelGallery</h1>
-      <p>Search through thousands of classical paintings for people that look just like you.</p>
-      <a href="javascript:void(take_snapshot())">Take a Snapshot.</a>
-      Or, upload a photo instead:
-
+      <h1>Doppel<b>Gallery</b></h1>
+      <p><b>Search through thousands of classical paintings for someone that looks just like you!</b> Make sure that:</p>
+      <ul>
+          <li>You're not wearing glasses.</li>
+          <li>Your picture is clear and has good lighting.</li>
+          <li>You look like you're posing for a painting.</li>
+      </ul>
+      <p>When you're ready, click the to the right! Or, upload a photo:</p>
       <form enctype="multipart/form-data" action="/upload" method="post" id="upload-form">
           <input type="file" name="photo" id="upload-input" accept="image/*" />
       </form>
+      <p>If you're just not up for a picture, try one of our examples instead:</p>
     </div>
   </div>
-  <div class="col-lg-5 my-auto">
+  <div class="col-lg-5">
     <div id="photo"></div>
+    <button id="camera-button" type="button" class="btn btn-info btn-lg btn-block"><i class="fa fa-camera" aria-hidden="true"></i></button>
+    <!--<a href="javascript:void(take_snapshot())">Take a Snapshot.</a>-->
   </div>
 </div>
 

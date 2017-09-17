@@ -3,15 +3,22 @@ body {
 }
 
 #calling-card {
+    margin-top: 120px;
     padding-top: 32px;
     margin-bottom: 0px;
 }
 
 #photo {
-    /* width: 320px; */
-    height: 600px;
+    margin-top: 120px;
+    width: 445px;
+    height: 334px;
+    color: rgb(233, 236, 239);
 }
 
-#upload-photo {
-    display: none;
+#upload-form {
+    margin-bottom: 1rem;
+}
+
+#camera-button {
+    margin-top: 10px;
 }
