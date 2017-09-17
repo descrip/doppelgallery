@@ -50,7 +50,7 @@
 			  <a href="{{ static_url('img/images/%s.jpg' % paintings[i]['id']) }}" itemprop="contentUrl" data-size="964x1024">
             <img src="{{ static_url('img/images/%s.jpg' % paintings[i]['id']) }}" itemprop="thumbnail" alt="Image description" />
         </a>
-            {% if paintings[i]['title'] and paintings[i]['artist'] %}
+            {% if 'title' in paintings[i] and 'artist' in paintings[i] %}
 				<figcaption itemprop="caption description">{{ '%s by %s, d = %f' % (paintings[i]['title'], paintings[i]['artist'], paintings[i]['dist']) }}</figcaption>
             {% else %}
 				<figcaption itemprop="caption description">{{ 'Unknown, d = %f' % (paintings[i]['dist']) }}</figcaption>
