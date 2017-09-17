@@ -7,7 +7,7 @@ from tornado.options import define
 path = lambda root,*a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8000, help="run on the given port", type=int)
 tornado.options.parse_command_line()
 
 settings = {
