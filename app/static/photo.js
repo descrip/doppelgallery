@@ -1,13 +1,11 @@
 var photo = document.getElementById('photo');
 
+Webcam.attach('#photo');
+
 Webcam.set({
-    width: photo.offsetWidth,
-    height: photo.offsetHeight,
     image_format: 'jpeg',
     jpeg_quality: 90
 });
-
-Webcam.attach('#photo');
 
 function take_snapshot() {
     Webcam.snap(function(data_uri) {
