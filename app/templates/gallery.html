@@ -13,7 +13,8 @@
   <div class="row" id="row">
     <div class="col-lg-4 col-abs col-left">
       <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="{{ static_url('img/users/%s' % user_img_file) }}" itemprop="contentUrl" data-size="1024x1024">
+        <a href="{{ static_url('img/users/%s' % user_img_file) }}" itemprop="contentUrl" data-size="{{ "%dx%d" % (user_img_width, user_img_height) }}">
+            <">
             <img src="{{ static_url('img/users/%s' % user_img_file) }}" itemprop="thumbnail" alt="Image description" />
         </a>
         <figcaption itemprop="caption description"></figcaption>
