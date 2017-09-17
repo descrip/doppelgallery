@@ -14,12 +14,36 @@ html,body {
   -webkit-text-stroke: 2px #52616B;
 }
 
+.small-title {
+  color: #C9D6DF;
+  font-size: 50px;
+  -webkit-text-stroke: 2px #52616B;
+}
+
 .btn {
   font-family: Quicksand;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
   font-size: 36px;
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
 }
 
 .top-container {
