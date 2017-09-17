@@ -45,12 +45,12 @@
         <figcaption itemprop="caption description">Image caption 4</figcaption>
       </figure>
 			-->
-		{% for p in paintings %}
-      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-			  <a href="{{ static_url('img/images/%s.jpg' % p[1]) }}" itemprop="contentUrl" data-size="964x1024">
-            <img src="{{ static_url('img/images/%s.jpg' % p[1]) }}" itemprop="thumbnail" alt="Image description" />
+		{% for i in range(len(paintings)) %}
+        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" style="{{ 'padding-bottom: 300px;' if i == len(paintings)-1 else '' }}">
+			  <a href="{{ static_url('img/images/%s.jpg' % paintings[i][1]) }}" itemprop="contentUrl" data-size="964x1024">
+            <img src="{{ static_url('img/images/%s.jpg' % paintings[i][1]) }}" itemprop="thumbnail" alt="Image description" />
         </a>
-				<figcaption itemprop="caption description">{{ 'd = %f' % p[0] }}</figcaption>
+				<figcaption itemprop="caption description">{{ 'd = %f' % paintings[i][0] }}</figcaption>
       </figure>
 		{%end %}
     </div>
