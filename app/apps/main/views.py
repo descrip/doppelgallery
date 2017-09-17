@@ -56,46 +56,44 @@ class GalleryHandler(tornado.web.RequestHandler):
 	cur = conn.cursor()
 
         img_file = get_img_by_user_id(user_id)
-        # try:
-        x = get_top_3('/root/doppelganger/app/static/img/users/' + img_file)
+        try:
+            x = get_top_3('/root/doppelganger/app/static/img/users/' + img_file)
 
-        p = []
-        for i in range(3):
-            p.append((x[0][i], x[1][i]))
-        p.sort()
+            p = []
+            for i in range(3):
+                p.append((x[0][i], x[1][i]))
+            p.sort()
 
-        paintings = []
-        cur.execute(
-            "SELECT * FROM images WHERE id IN ('%s', '%s', '%s')" % \
-            tuple([y[1] + ".jpg" for y in p])
-        )
-        for pp in p:
-            for r in cur:
-                if r[0] == pp[1] + ".jpg":
-                    d = {
-                        'id' : pp[1],
-                        'dist' : pp[0],
-                        'artist' : r[1],
-                        'title' : r[2],
-                    }
-                    paintings.append(d)
-                    break
-            else:
-                paintings.append({
-                    'id' : pp[1],
-                    'dist' : pp[0]
-                })
-
-        with Image.open('./static/img/users/%s' % img_file) as user_img:
-            self.render(
-                'gallery.html',
-                user_id = user_id,
-                user_img_file = img_file,
-                user_img_width = user_img.width,
-                user_img_height = user_img.height,
-                paintings = paintings
+            paintings = []
+            cur.execute(
+                "SELECT * FROM images WHERE id IN ('%s', '%s', '%s')" % \
+                tuple([y[1] + ".jpg" for y in p])
             )
-        '''
+            for pp in p:
+                for r in cur:
+                    if r[0] == pp[1] + ".jpg":
+                        d = {
+                            'id' : pp[1],
+                            'dist' : pp[0],
+                            'artist' : r[1],
+                            'title' : r[2],
+                        }
+                        paintings.append(d)
+                        break
+                else:
+                    paintings.append({
+                        'id' : pp[1],
+                        'dist' : pp[0]
+                    })
+
+            with Image.open('./static/img/users/%s' % img_file) as user_img:
+                self.render(
+                    'gallery.html',
+                    user_id = user_id,
+                    user_img_file = img_file,
+                    user_img_width = user_img.width,
+                    user_img_height = user_img.height,
+                    paintings = paintings
+                )
         except:
             self.redirect('/?face_error=1')
-        '''
