@@ -30,4 +30,4 @@ def convert_dir():
     return None
 
 if __name__ == "__main__":
-    dir_to_rep(sys.argv[1])
+    # dir_to_rep(sys.argv[1])
