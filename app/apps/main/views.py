@@ -3,7 +3,8 @@ import StringIO
 from PIL import Image
 import os
 from random import randint
-import image_db as idb
+from image_db import ImageDB
+from get_rep import getRep
 
 def get_new_user_id():
     while True:
@@ -51,6 +52,11 @@ class WebcamHandler(tornado.web.RequestHandler):
 class GalleryHandler(tornado.web.RequestHandler):
     def get(self, user_id):
         img_file = get_img_by_user_id(user_id)
+        x = get_top_3('/root/doppelganger/app/static/img/users/' + img_file)
+        paintings = []
+        for i in range(3):
+            paintings.append((x[0][i], x[1][i]))
+        import pdb; pdb.set_trace();
         with Image.open('./static/img/users/%s' % img_file) as user_img:
             self.render(
                 'gallery.html',
@@ -58,4 +64,5 @@ class GalleryHandler(tornado.web.RequestHandler):
                 user_img_file = img_file,
                 user_img_width = user_img.width,
                 user_img_height = user_img.height,
+                paintings = paintings
             )

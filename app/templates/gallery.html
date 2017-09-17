@@ -23,6 +23,7 @@
       <img src="{{ static_url('img/qeq.png') }}" />
     </div>
     <div class="col-lg-6 col-scroll col-right">
+    	<!--
       <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
         <a href="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="contentUrl" data-size="964x1024">
             <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="thumbnail" alt="Image description" />
@@ -43,6 +44,15 @@
         </a>
         <figcaption itemprop="caption description">Image caption 4</figcaption>
       </figure>
+			-->
+		{% for p in paintings %}
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  <a href="{{ static_url('img/images/%s.jpg' % p[1]) }}" itemprop="contentUrl" data-size="964x1024">
+            <img src="{{ static_url('img/images/%s.jpg' % p[1]) }}" itemprop="thumbnail" alt="Image description" />
+        </a>
+				<figcaption itemprop="caption description">{{ 'd = %f' % p[0] }}</figcaption>
+      </figure>
+		{%end %}
     </div>
 
   </div>
