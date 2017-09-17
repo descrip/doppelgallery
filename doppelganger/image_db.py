@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from vars import DATA_DIR
 
 
@@ -13,16 +14,23 @@ class ImageDB:
     def __str__(self):
         return str(self.img_mat) + '\n' + str(self.img_names)
 
-    def add_img(self, img_vec, img_name):
-        if self.empty:
-            self.img_mat = np.array([img_vec])
-            self.img_names = np.array([img_name])
-            self.empty = False
-            return None
-        else:
-            self.img_mat = np.vstack((self.img_mat,img_vec))
-            self.img_names = np.append(self.img_names, img_name)
-            return None
+
+    def load_from_vecs(self, dir_path):
+        # this is the largest size we would have to worry about
+        total_files = len([name for name in os.listdir(dir_path)])
+        self.img_mat = np.zeros((total_files,128))
+        self.img_names = []
+        ct = 0
+        for filename in os.listdir(dir_path):
+            mat = np.loadtxt(os.path.join(dir_path, filename))
+            name_id = filename.split("_")[1].split(".")[0]
+            if mat.size == 0:
+                pass
+            else:
+                self.img_mat[ct] = mat
+                self.img_names.append(name_id)
+                ct += 1
+        self.img_mat = self.img_mat[:ct]
 
     # assumes img_mat is an n * 128 numpy matrix of image references, n>=4
     # assumes input_img is a [128] numpy vector representing the image
@@ -30,7 +38,7 @@ class ImageDB:
         vec_diff = self.img_mat - input_img
         dists = np.square(np.einsum('ij,ij->i', vec_diff, vec_diff))
         idx = np.argpartition(dists,k)
-        return dists[idx[:k]], idb.get_img_names(idx[:k])
+        return dists[idx[:k]], self.get_img_names(idx[:k])
 
     # prints out the images names given an index set
     def get_img_names(self, idx):
