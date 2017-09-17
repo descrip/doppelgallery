@@ -4,7 +4,15 @@
 
 <h1>DoppelGallery</h1>
 <div id="photo"></div>
-<a href="javascript:void(take_snapshot())">Take Snapshot</a>
+
+<a href="javascript:void(take_snapshot())">Take a Snapshot.</a>
+Or, upload a photo instead:
+
+<form enctype="multipart/form-data" action="/upload" method="post">
+    <input type="file" name="photo" accept="image/*" />
+    <input type="submit" value="Upload"/>
+</form>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.22/webcam.min.js"></script>
 <script type="text/javascript" src="{{ static_url('photo.js') }}"></script>
 

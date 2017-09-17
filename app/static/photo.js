@@ -9,6 +9,8 @@ Webcam.attach('#photo');
 
 function take_snapshot() {
     Webcam.snap(function(data_uri) {
-        Webcam.upload(data_uri, '/', function(code, text) {});
+        Webcam.upload(data_uri, '/webcam', function (code, text) {
+            window.location.href = text;
+        });
     });
 }
