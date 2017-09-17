@@ -30,6 +30,7 @@ class ImageDB:
         self.img_names = imname_str.split("&&")
         return None
 
+
 def idb_4nearest(idb, in_img):
     dists, indices = idb.k_nearest(in_img, 4)
     return dists, idb.get_img_names(indices)
