@@ -79,7 +79,7 @@ class GalleryHandler(tornado.web.RequestHandler):
                             'title' : r[2],
                         }
                         paintings.append(d)
-                    break
+                        break
                 else:
                     paintings.append({
                         'id' : pp[1],
