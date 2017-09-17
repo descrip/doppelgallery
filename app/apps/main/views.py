@@ -69,8 +69,9 @@ class GalleryHandler(tornado.web.RequestHandler):
                 "SELECT * FROM images WHERE id IN ('%s', '%s', '%s')" % \
                 tuple([y[1] + ".jpg" for y in p])
             )
+            er = list(cur)
             for pp in p:
-                for r in cur:
+                for r in er:
                     if r[0] == pp[1] + ".jpg":
                         d = {
                             'id' : pp[1],
