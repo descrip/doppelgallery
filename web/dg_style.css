@@ -1,0 +1,37 @@
+html,body {
+  height: 100%;
+  min-height: 100%;
+  background: #F0F5F9;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+}
+
+.title {
+  color: #C9D6DF;
+  font-size: 100px;
+  -webkit-text-stroke: 2px #52616B;
+}
+
+.btn {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+}
+
+.top-container {
+  height: 50% !important;
+}
+
+.bottom-container {
+  height: 50%;
+  overflow: scroll;
+}
+
+.card {
+  display: inline-block;
+  width: 33%;
+}
