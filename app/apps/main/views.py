@@ -65,7 +65,26 @@ class GalleryHandler(tornado.web.RequestHandler):
             p.sort()
 
             paintings = []
-            import pdb; pdb.set_trace();
+            cur.execute(
+                "SELECT * FROM images WHERE id IN ('%s', '%s', '%s')" % \
+                tuple([y[1] + ".jpg" for y in p])
+            )
+            for pp in p:
+                for r in cur:
+                    if r[0] == pp[1] + ".jpg":
+                        d = {
+                            'id' : pp[1],
+                            'dist' : pp[0],
+                            'artist' : r[1],
+                            'title' : r[2],
+                        }
+                        paintings.append(d)
+                    break
+                else:
+                    paintings.append({
+                        'id' : pp[1],
+                        'dist' : pp[0]
+                    })
 
             with Image.open('./static/img/users/%s' % img_file) as user_img:
                 self.render(
