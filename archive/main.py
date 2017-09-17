@@ -44,7 +44,7 @@ def get_rep(imgPath):
     start = time.time()
     bb = align.getLargestFaceBoundingBox(rgbImg)
     if bb is None:
-        raise Exception("Unable to find a face: {}".format(imgPath))
+        return None
 
     start = time.time()
     alignedFace = align.align(args.imgDim, rgbImg, bb,
