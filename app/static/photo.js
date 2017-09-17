@@ -1,6 +1,8 @@
+var photo = document.getElementById('photo');
+
 Webcam.set({
-    width: 320,
-    height: 240,
+    width: photo.offsetWidth,
+    height: photo.offsetHeight,
     image_format: 'jpeg',
     jpeg_quality: 90
 });
@@ -14,3 +16,7 @@ function take_snapshot() {
         });
     });
 }
+
+document.getElementById("upload-input").onchange = function() {
+    document.getElementById("upload-form").submit();
+};

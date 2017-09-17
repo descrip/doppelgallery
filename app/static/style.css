@@ -1,10 +1,15 @@
 body {
-    background-color: #efefef;
+    background-color: #ffffff;
+}
+
+#calling-card {
+    padding-top: 32px;
+    margin-bottom: 0px;
 }
 
 #photo {
-    width: 320px;
-    height: 240px;
+    /* width: 320px; */
+    height: 600px;
 }
 
 #upload-photo {

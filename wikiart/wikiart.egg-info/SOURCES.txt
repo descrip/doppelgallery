@@ -1,0 +1,13 @@
+setup.py
+wikiart/__init__.py
+wikiart/base.py
+wikiart/console.py
+wikiart/converter.py
+wikiart/fetcher.py
+wikiart/settings.py
+wikiart.egg-info/PKG-INFO
+wikiart.egg-info/SOURCES.txt
+wikiart.egg-info/dependency_links.txt
+wikiart.egg-info/entry_points.txt
+wikiart.egg-info/requires.txt
+wikiart.egg-info/top_level.txt
