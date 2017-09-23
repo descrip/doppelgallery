@@ -6,7 +6,7 @@ Hack the North 2017 winner! https://devpost.com/software/doppel-gallery
 
 ## Installation
 
-You'll need about 80 GB of free space.
+You'll need about 100 GB of free space.
 
 ### Web Server
 
@@ -42,7 +42,10 @@ TODO
 
 ## Authors
 
-Alex Rutar (@alexrutar)
-Anthony Weston (@aeweston98)
-Jack Zhang (@fakesquid)
-Jeffrey Zhao (@descrip)
+Alex Rutar ([@alexrutar](https://github.com/alexrutar))
+
+Anthony Weston ([@aeweston98](https://github.com/aeweston98))
+
+Jack Zhang ([@fakesquid](https://github.com/fakesquid))
+
+Jeffrey Zhao ([@descrip](https://github.com/descrip))
